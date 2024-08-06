@@ -1,37 +1,15 @@
-from pydantic import BaseModel
-from typing import List, Optional
+from marshmallow import Schema, fields, validate
 
 
-class TaskBase(BaseModel):
-    title: str
-    description: Optional[str] = None
-    is_completed: bool = False
+class UserSchema(Schema):
+    id = fields.Int(dump_only=True)
+    username = fields.Str(required=True, validate=validate.Length(min=1))
+    email = fields.Email(required=True)
 
 
-class TaskCreate(TaskBase):
-    pass
-
-
-class Task(TaskBase):
-    id: int
-    owner_id: int
-
-    class Config:
-        orm_mode: True
-
-
-class UserBase(BaseModel):
-    username: str
-    email: str
-
-
-class UserCreate(UserBase):
-    pass
-
-
-class User(UserBase):
-    id: int
-    tasks: List[Task] = []
-
-    class Config:
-        orm_mode: True
+class TaskSchema(Schema):
+    id = fields.Int(dump_only=True)
+    title = fields.Str(required=True, validate=validate.Length(min=1))
+    description = fields.Str()
+    status = fields.Str(validate=validate.OneOf(['pending', 'completed']))
+    user_id = fields.Int(required=True)
