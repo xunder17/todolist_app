@@ -31,5 +31,6 @@
 - **PUT /tasks/{id}** - обновить информацию о задаче
 - **DELETE /tasks/{id}** - удалить задачу
 
-##FastAPI
+## FastAPI
+
 ASGI/WSGI подход
