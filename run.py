@@ -1,10 +1,10 @@
-from app import create_app
+from app import create_app  # cannot import name 'create_app' from 'app'
 import logging
 
-app = create_app()
+app = create_app()  # Error
 
 
-def setup_logging(log_file='app.log', level=logging.INFO):
+def setup_logging(log_file='app.log', level=logging.INFO):  # TODO
     """Настраивает логирование."""
     logging.basicConfig(
         filename=log_file,
@@ -13,7 +13,7 @@ def setup_logging(log_file='app.log', level=logging.INFO):
         level=level
     )
 
-    
+
 """Пример записи логов.
     logging.debug("Это отладочное сообщение.")
     logging.info("Это информационное сообщение.")
