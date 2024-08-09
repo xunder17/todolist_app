@@ -5,7 +5,7 @@ app = FastAPI(
     tittle="ToDo List App"
 )
 
-app.include_router(users.router)
-app.include_router(tasks.router)
+app.include_router(users.router, tags=["Users"])
+app.include_router(tasks.router, tags=["Tasks"])
 
 # uvicorn example:app --log-config /path/to/log.ini
