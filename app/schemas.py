@@ -40,5 +40,5 @@ class User(UserBase):
         orm_mode = True
 
 
- # created_at: Optional[str]
+# created_at: Optional[str]
 
