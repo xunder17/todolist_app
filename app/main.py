@@ -8,4 +8,4 @@ app = FastAPI(
 app.include_router(users.router, tags=["Users"])
 app.include_router(tasks.router, tags=["Tasks"])
 
-# uvicorn example:app --log-config /path/to/log.ini
+# uvicorn example:app --log-config env/log.ini

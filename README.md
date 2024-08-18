@@ -39,6 +39,12 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
+*Запуск с логированием(в корне будет создан файл **logfile.log**)*
+```bash
+uvicorn app.main:app --log-config env/log.ini
+```
+**Обратите внимание** на указанный путь к конфигурационному файлу `log.ini`. Он необходим для работы логирования событий!
+
 ### API Эндпоинты
 
 #### *Пользователи:*
@@ -60,11 +66,12 @@ uvicorn app.main:app --reload
 ASGI/WSGI подход
 
 ## Тесты 
-Используем pytest
+Автотесты, Pytest
+Хранятся в каталоге `tests`
 
 ## Примеры
 
-**Get** /users/ *users_list*
+**Get** /users/ *users_list* response body:
 ```json
 [
     {

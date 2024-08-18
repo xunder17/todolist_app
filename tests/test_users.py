@@ -1,19 +1,14 @@
-from fastapi import FastAPI
+from app.main import app  # добавляем наше приложение
 from fastapi.testclient import TestClient
-
-app = FastAPI()
-
-
-@app.get("/")
-async def read_main():
-    return {"msg": "Hello main!"}
+import pytest
 
 
-client = TestClient(app)
+@pytest.fixture
+def client():
+    return TestClient(app)
 
 
-def test_read_main():
-    response = client.get("/")
+def test_get_user(client):
+    response = client.get("/users/")
     assert response.status_code == 200
-    assert response.json() == {"msg": "Hello World!"}
-    
+    #  assert response.json() == [{}]
