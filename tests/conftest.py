@@ -1,8 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.main import app
 from app.database import Base
-from fastapi.testclient import TestClient
 import pytest
 
 # Создание тестовой базы данных
@@ -24,15 +22,3 @@ def override_get_db():
     finally:
         db.close()
         Base.metadata.drop_all(bind=engine_test)
-
-
-@pytest.fixture  # Убери это TODO
-def client():
-    def _get_test_db_override():
-        db = TestingSessionLocal()
-        try:
-            yield db
-        finally:
-            db.close()
-    app.dependency_overrides[get_db] = _get_test_db_override
-    return TestClient(app)
