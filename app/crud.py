@@ -32,7 +32,7 @@ def create_user(db: Session, user: schemas.UserCreate):
 def tasks_list(db: Session, skip: int = 0, limit: int = 100):
     return (
         db.query(models.Task)
-        .order_by(case([(models.Task.completed == True, 0)], else_=1)) #так, чтобы completed=True были первыми
+        .order_by(case([(models.Task.completed == True, 0)], else_=1))  #так, чтобы completed=True были первыми
         .offset(skip)
         .limit(limit)
         .all()
